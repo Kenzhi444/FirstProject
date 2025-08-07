@@ -4,6 +4,9 @@ import java.util.Scanner;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
+        int playerOne = 1;
+        int playerTwo = 2;
+        int currentPlayer = playerOne;
 
         char[][] gameGrid = new char[3][3];
         for (int i = 0; i < 3; i++) {
@@ -13,33 +16,49 @@ public class Main {
         }
         boolean victory = false;
         while (!victory) {
+            // Считываем координаты ячейки с консоли
             Scanner console = new Scanner(System.in);
+            System.out.println("Введите координаты ячейки");
             int line = console.nextInt();
             int column = console.nextInt();
-            boolean validCell;
-            if (gameGrid[line][column] == ' ') {
-                validCell = true;
-            } else {
-                validCell = false;
-            }
+            boolean validCell = gameGrid[line][column] == ' ';
+            // Если ячейка пуста
             if (validCell) {
-                gameGrid[line][column] = 'X';
-                if (gameGrid[line + 1][column] == 'X' && gameGrid[line - 1][column] == 'X') {
-                    victory = true;
-                    System.out.println("Победа!!!");
-                } else if (gameGrid[line][column + 1] == 'X' && gameGrid[line][column - 1] == 'X') {
-                    victory = true;
-                    System.out.println("Победа!!!");
+                // Если игрок №1
+                if (currentPlayer == playerOne) {
+                    gameGrid[line][column] = 'X';
+                    if (gameGrid[line + 1][column] == 'X' && gameGrid[line - 1][column] == 'X') {
+                        victory = true;
+                        System.out.println("Победа!!!");
+                    } else if (gameGrid[line][column + 1] == 'X' && gameGrid[line][column - 1] == 'X') {
+                        victory = true;
+                        System.out.println("Победа!!!");
+                    }
+                    // Смена игрока
+                    currentPlayer = playerTwo;
                 }
-            } else {
-                System.out.println("Ячейка занята, выберите другую!");
+                // Если игрок №2
+                else {
+                    gameGrid[line][column] = '0';
+                    if (gameGrid[line + 1][column] == '0' && gameGrid[line - 1][column] == '0') {
+                        victory = true;
+                        System.out.println("Победа!!!");
+                    } else if (gameGrid[line][column + 1] == '0' && gameGrid[line][column - 1] == '0') {
+                        victory = true;
+                        System.out.println("Победа!!!");
+                    }
+                    // Смена игрока
+                    currentPlayer = playerOne;
+                }
+            }
+            // Если ячейка не пуста
+            else {
+                    System.out.println("Ячейка занята, выберите другую!");
             }
             // Проверка на ничью
-            int count = 0;
             for (int i = 0; i < 3; i++) {
                 for (int j = 0; j < 3; j++) {
                     if (gameGrid[i][j] == ' ') {
-                        count++;
                         break;
                     }
                 }
