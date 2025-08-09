@@ -1,4 +1,6 @@
+import java.util.Arrays;
 import java.util.Scanner;
+import java.util.stream.Stream;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
@@ -13,6 +15,17 @@ public class Main {
             for (int j = 0; j < 3; j++) {
                 gameGrid[i][j] = ' ';
             }
+        }
+        // Рисуем поле
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                System.out.print("| " + gameGrid[i][j] + " |");
+            }
+            System.out.println();
+            for (int j = 0; j < 3; j++) {
+                System.out.print("-----");
+            }
+            System.out.println();
         }
         boolean victory = false;
         while (!victory) {
@@ -29,10 +42,10 @@ public class Main {
                     gameGrid[line][column] = 'X';
                     if (gameGrid[line + 1][column] == 'X' && gameGrid[line - 1][column] == 'X') {
                         victory = true;
-                        System.out.println("Победа!!!");
+                        System.out.println("Победа игрока №1!!!");
                     } else if (gameGrid[line][column + 1] == 'X' && gameGrid[line][column - 1] == 'X') {
                         victory = true;
-                        System.out.println("Победа!!!");
+                        System.out.println("Победа игрока №1!!!");
                     }
                     // Смена игрока
                     currentPlayer = playerTwo;
@@ -42,10 +55,10 @@ public class Main {
                     gameGrid[line][column] = '0';
                     if (gameGrid[line + 1][column] == '0' && gameGrid[line - 1][column] == '0') {
                         victory = true;
-                        System.out.println("Победа!!!");
+                        System.out.println("Победа игрока №2!!!");
                     } else if (gameGrid[line][column + 1] == '0' && gameGrid[line][column - 1] == '0') {
                         victory = true;
-                        System.out.println("Победа!!!");
+                        System.out.println("Победа игрока №2!!!");
                     }
                     // Смена игрока
                     currentPlayer = playerOne;
