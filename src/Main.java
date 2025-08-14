@@ -1,3 +1,4 @@
+import java.awt.*;
 import java.util.Arrays;
 import java.util.Scanner;
 import java.util.stream.Stream;
@@ -10,25 +11,47 @@ public class Main {
         int playerTwo = 2;
         int currentPlayer = playerOne;
 
-        char[][] gameGrid = new char[3][3];
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
+        char[][] gameGrid = new char[4][4];
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
                 gameGrid[i][j] = ' ';
             }
         }
         boolean victory = false;
         while (!victory) {
             // Рисуем поле
+            System.out.print("  ");
             for (int i = 0; i < 3; i++) {
-                for (int j = 0; j < 3; j++) {
-                    System.out.print("| " + gameGrid[i][j] + " |");
-                }
-                System.out.println();
-                for (int j = 0; j < 3; j++) {
-                    System.out.print("-----");
-                }
-                System.out.println();
+                System.out.print("  " + (i + 1) + " ");
             }
+            System.out.println();
+            System.out.print("  +");
+            for (int i = 0; i < 3; i++) {
+                System.out.print("---+");
+            }
+            System.out.println();
+
+            for (int i = 0; i < 3; i++) {
+                System.out.print((i + 1) + " ");
+                System.out.print("|");
+                for (int j = 0; j < 3; j++) {
+                    System.out.print(" " + gameGrid[i][j] + " |");
+                }
+                System.out.println();
+                if (i < 3 - 1) {
+                    System.out.print("  +");
+                    for (int k = 0; k < 3; k++) {
+                        System.out.print("---+");
+                    }
+                    System.out.println();
+                }
+            }
+            System.out.print("  +");
+            for (int k = 0; k < 3; k++) {
+                System.out.print("---+");
+            }
+            System.out.println();
+
             // Считываем координаты ячейки с консоли
             Scanner console = new Scanner(System.in);
             System.out.println("Введите координаты ячейки");

@@ -14,4 +14,6 @@ public abstract class Player {
     public char getSymbol() {
         return symbol;
     }
+
+    abstract int[] getCords();
 }
