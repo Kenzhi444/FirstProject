@@ -7,7 +7,7 @@ public class Grid {
     public void print() {
         for (int i = 0; i < LINES; i++) {
             for (int j = 0; j < COLUMN; j++) {
-                grid[LINES][COLUMN] = ' ';
+                grid[i][j] = ' ';
             }
         }
         System.out.print("  ");
@@ -53,7 +53,7 @@ public class Grid {
         }
     }
 
-    private boolean isWinner(char symbol) {
+    public boolean isWinner(char symbol) {
         boolean victory = false;
         int count = 0;
         for (int i = 1; i < LINES; i++) {
