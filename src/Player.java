@@ -16,4 +16,6 @@ public abstract class Player {
     }
 
     abstract int[] getCords();
+
+
 }

@@ -4,7 +4,7 @@ public class Grid {
     private final int COLUMN = 4;
     char[][] grid = new char[LINES][COLUMN];
 
-    private void print() {
+    public void print() {
         for (int i = 0; i < LINES; i++) {
             for (int j = 0; j < COLUMN; j++) {
                 grid[LINES][COLUMN] = ' ';
@@ -56,8 +56,8 @@ public class Grid {
     private boolean isWinner(char symbol) {
         boolean victory = false;
         int count = 0;
-        for (int i = 1; i < 4; i++) {
-            for (int j = 1; j < 4; j++) {
+        for (int i = 1; i < LINES; i++) {
+            for (int j = 1; j < COLUMN; j++) {
                 if (grid[i][j] == symbol) {
                     count++;
                 }
