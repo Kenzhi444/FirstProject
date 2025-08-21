@@ -35,6 +35,7 @@ public class Game {
             System.out.println("Введите ответ заново. Y или N");
         }
         // Рисуем поле
+        grid.start();
         grid.print();
         int countMove = 0;
         boolean victory = false;
@@ -48,7 +49,7 @@ public class Game {
                 countMove++;
                 if (players.contains(playerTwo)) {
                     currentPlayer = playerTwo;
-                } else {
+                } else if (players.contains(playerAI)){
                     currentPlayer = playerAI;
                 }
                 grid.print();
@@ -69,6 +70,9 @@ public class Game {
             }
             if (countMove == 9) {
                 System.out.println("Ничья");
+            }
+            if (victory) {
+                System.out.println("Победа игрока " + currentPlayer.getName());
             }
         }
     }

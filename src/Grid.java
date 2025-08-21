@@ -4,12 +4,14 @@ public class Grid {
     private final int COLUMN = 4;
     char[][] grid = new char[LINES][COLUMN];
 
-    public void print() {
+    public void start() {
         for (int i = 0; i < LINES; i++) {
             for (int j = 0; j < COLUMN; j++) {
                 grid[i][j] = ' ';
             }
         }
+    }
+    public void print() {
         System.out.print("  ");
         for (int i = 0; i < COLUMN - 1; i++) {
             System.out.print("  " + (i + 1) + " ");
@@ -49,7 +51,7 @@ public class Grid {
         if (grid[x][y] != ' ') {
             System.out.println("Ячейка занята, выберите другую!");
         } else {
-            grid[x][y] = symbol;
+            grid[x - 1][y - 1] = symbol;
         }
     }
 
@@ -59,23 +61,25 @@ public class Grid {
         for (int i = 1; i < LINES;) {
             for (int j = 1; j < COLUMN; j++) {
                 if (grid[i][j] == symbol) {
-                    count++;
+                    ++count;
+                    if (count == 3) {
+                        result = true;
+                    }
                 }
             }
-            if (count == 3) {
-                result = true;
-            }
+            count = 0;
             i++;
         }
         for (int i = 1; i < COLUMN;) {
             for (int j = 1; j < LINES; j++) {
                 if (grid[i][j] == symbol) {
-                    count++;
+                    ++count;
+                    if (count == 3) {
+                        result = true;
+                    }
                 }
             }
-            if (count == 3) {
-                result = true;
-            }
+                count = 0;
             i++;
         }
         return result;
