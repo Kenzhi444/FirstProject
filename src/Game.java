@@ -8,6 +8,7 @@ public class Game {
     HumanPlayer playerOne;
     HumanPlayer playerTwo;
     ComputerPlayer playerAI;
+    Player currentPlayer;
 
     public void play() {
         // Определяем первого игрока
@@ -37,24 +38,33 @@ public class Game {
         grid.print();
         int countMove = 0;
         boolean victory = false;
+        currentPlayer = playerOne;
         while (!victory && countMove != 9) {
             // Игрок №1 делает ход
-            int[] cords = playerOne.getCords();
-            grid.setSymbol(cords[0], cords[1], 'X');
-            grid.isWinner(playerOne.getSymbol());
-            countMove++;
-            grid.print();
-            if (players.contains(playerTwo)) { // Если играем со вторым игроком
+            if (currentPlayer == playerOne) {
+                int[] cords = playerOne.getCords();
+                grid.setSymbol(cords[0], cords[1], 'X');
+                victory = grid.isWinner(playerOne.getSymbol());
+                countMove++;
+                if (players.contains(playerTwo)) {
+                    currentPlayer = playerTwo;
+                } else {
+                    currentPlayer = playerAI;
+                }
+                grid.print();
+            } else if (players.contains(playerTwo) && currentPlayer == playerTwo) { // Если играем со вторым игроком
                 int[] cords2 = playerTwo.getCords();
                 grid.setSymbol(cords2[0], cords2[1], '0');
-                grid.isWinner(playerTwo.getSymbol());
+                victory = grid.isWinner(playerTwo.getSymbol());
                 countMove++;
+                currentPlayer = playerOne;
                 grid.print();
-            } else { // Если играем с компьютером
+            } else if (players.contains(playerAI) && currentPlayer == playerAI) { // Если играем с компьютером
                 int[] cords3 = playerAI.getCords();
                 grid.setSymbol(cords3[0], cords3[1], '0');
-                grid.isWinner(playerAI.getSymbol());
+                victory = grid.isWinner(playerAI.getSymbol());
                 countMove++;
+                currentPlayer = playerOne;
                 grid.print();
             }
             if (countMove == 9) {

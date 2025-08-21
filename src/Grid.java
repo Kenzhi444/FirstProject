@@ -54,18 +54,30 @@ public class Grid {
     }
 
     public boolean isWinner(char symbol) {
-        boolean victory = false;
+        boolean result = false;
         int count = 0;
-        for (int i = 1; i < LINES; i++) {
+        for (int i = 1; i < LINES;) {
             for (int j = 1; j < COLUMN; j++) {
                 if (grid[i][j] == symbol) {
                     count++;
                 }
             }
             if (count == 3) {
-                victory = true;
+                result = true;
             }
+            i++;
         }
-        return victory;
+        for (int i = 1; i < COLUMN;) {
+            for (int j = 1; j < LINES; j++) {
+                if (grid[i][j] == symbol) {
+                    count++;
+                }
+            }
+            if (count == 3) {
+                result = true;
+            }
+            i++;
+        }
+        return result;
     }
 }
