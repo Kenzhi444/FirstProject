@@ -1,10 +1,10 @@
-import org.w3c.dom.ls.LSOutput;
+package ru.github.kenzhi444.tictactoe.player;
 
 import java.util.Scanner;
 
 public class HumanPlayer extends Player {
 
-    public HumanPlayer(String name, char symbol) {
+    public HumanPlayer(String name, String symbol) {
         super(name, symbol);
     }
 

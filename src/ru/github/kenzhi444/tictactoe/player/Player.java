@@ -1,8 +1,10 @@
+package ru.github.kenzhi444.tictactoe.player;
+
 public abstract class Player {
     private final String name;
-    private final char symbol;
+    private final String symbol;
 
-    public Player(String name, char symbol) {
+    public Player(String name, String symbol) {
         this.name = name;
         this.symbol = symbol;
     }
@@ -11,11 +13,11 @@ public abstract class Player {
         return name;
     }
 
-    public char getSymbol() {
+    public String getSymbol() {
         return symbol;
     }
 
-    abstract int[] getCords();
+    public abstract int[] getCords();
 
 
 }

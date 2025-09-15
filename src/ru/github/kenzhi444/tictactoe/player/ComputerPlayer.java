@@ -1,8 +1,10 @@
+package ru.github.kenzhi444.tictactoe.player;
+
 import java.util.Random;
 
 public class ComputerPlayer extends Player {
 
-    public ComputerPlayer(String name, char symbol) {
+    public ComputerPlayer(String name, String symbol) {
         super(name, symbol);
     }
 
