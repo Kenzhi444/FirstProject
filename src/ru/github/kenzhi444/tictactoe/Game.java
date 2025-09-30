@@ -22,7 +22,7 @@ public class Game {
 
     public void play() {
         int countMove = 0;
-        int countMax = grid.LINES * grid.COLUMN;
+        int countMax = (grid.LINES - 1) * (grid.COLUMN - 1);
 
         while (countMove != countMax) {
             grid.print();
@@ -35,7 +35,7 @@ public class Game {
                     break;
                 }
                 players.remove();
-                countMove++;
+                ++countMove;
             }
             players.add(player);
             if (countMove == countMax) {

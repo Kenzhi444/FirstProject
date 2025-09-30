@@ -34,7 +34,7 @@ public class Grid {
     }
 
     public boolean setSymbol(int x, int y, String symbol) {
-        if (x < 1 || x > 3 || y < 1 || y > 3) {
+        if (x < 1 || x > LINES - 1 || y < 1 || y > LINES - 1) {
             System.out.println("Координаты ячейки введены неверно, попробуйте еще раз");
             return false;
         }
@@ -49,6 +49,7 @@ public class Grid {
 
     public boolean isWinner(String symbol) {
         int count = 0;
+        int countDiag = 0;
         for (int i = 1; i < LINES;) {
             for (int j = 1; j < COLUMN; j++) {
                 if (grid[i][j].equals(symbol)) {
@@ -75,27 +76,31 @@ public class Grid {
         }
         for (int i = 1; i < LINES;) {
             for (int j = 1; j < COLUMN;) {
-                if (!grid[i][j].equals(symbol)) {
-                    return false;
+                if (grid[i][j].equals(symbol)) {
+                    ++countDiag;
+                    if (countDiag == 3) {
+                        return true;
+                    }
                 }
                 i++;
                 j++;
             }
-            return true;
+            countDiag = 0;
         }
 
         for (int i = LINES - 1; i > 0;) {
             for (int j = 1; j < COLUMN;) {
-                if (!grid[i][j].equals(symbol)) {
-                    return false;
+                if (grid[i][j].equals(symbol)) {
+                    ++countDiag;
+                    if (countDiag == 3) {
+                        return true;
+                    }
                 }
                 i--;
                 j++;
             }
-            return true;
+            countDiag = 0;
         }
-
-
         return false;
     }
 }
