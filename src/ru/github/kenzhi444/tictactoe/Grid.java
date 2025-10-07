@@ -42,7 +42,7 @@ public class Grid {
             System.out.println("Ячейка занята, выберите другую!");
             return false;
         } else {
-            grid[x][y] = symbol;
+            grid[x][y]  = symbol;
             return true;
         }
     }
