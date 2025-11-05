@@ -1,14 +1,20 @@
-package ru.github.kenzhi444.tictactoe;
+package ru.github.kenzhi444.tictactoe.grid;
 
-import java.util.Arrays;
+
+import java.util.Objects;
+import java.util.Scanner;
 
 public class Grid {
-
-    protected final int LINES = 4;
-    protected final int COLUMN = 4;
-    String[][] grid;
+    private final int LINES;
+    private final int COLUMN;
+    private final String[][] grid;
 
     public Grid() {
+        Scanner consoleGrid = new Scanner(System.in);
+        System.out.println("Введите количество строк поля");
+        LINES = consoleGrid.nextInt() + 1;
+        System.out.println("Введите количество столбцов поля");
+        COLUMN = consoleGrid.nextInt() + 1;
         grid = new String[LINES][COLUMN];
         for (int i = 0; i < LINES; i++) {
             for (int j = 0; j < COLUMN; j++) {
@@ -38,7 +44,7 @@ public class Grid {
             System.out.println("Координаты ячейки введены неверно, попробуйте еще раз");
             return false;
         }
-        if (grid[x][y] != " ") {
+        if (!Objects.equals(grid[x][y], " ")) {
             System.out.println("Ячейка занята, выберите другую!");
             return false;
         } else {
@@ -54,7 +60,7 @@ public class Grid {
             for (int j = 1; j < COLUMN; j++) {
                 if (grid[i][j].equals(symbol)) {
                     ++count;
-                    if (count == 3) {
+                    if (count == LINES - 1) {
                         return true;
                     }
                 }
@@ -66,7 +72,7 @@ public class Grid {
             for (int j = 1; j < LINES; j++) {
                 if (grid[j][i].equals(symbol)) {
                     ++count;
-                    if (count == 3) {
+                    if (count == LINES - 1) {
                         return true;
                     }
                 }
@@ -78,7 +84,7 @@ public class Grid {
             for (int j = 1; j < COLUMN;) {
                 if (grid[i][j].equals(symbol)) {
                     ++countDiag;
-                    if (countDiag == 3) {
+                    if (countDiag == LINES - 1) {
                         return true;
                     }
                 }
@@ -92,7 +98,7 @@ public class Grid {
             for (int j = 1; j < COLUMN;) {
                 if (grid[i][j].equals(symbol)) {
                     ++countDiag;
-                    if (countDiag == 3) {
+                    if (countDiag == LINES - 1) {
                         return true;
                     }
                 }
@@ -102,5 +108,9 @@ public class Grid {
             countDiag = 0;
         }
         return false;
+    }
+    public int countMax () {
+        int result = (LINES - 1) * (COLUMN - 1);
+        return result;
     }
 }
