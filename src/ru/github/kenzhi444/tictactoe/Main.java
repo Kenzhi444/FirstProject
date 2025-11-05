@@ -10,9 +10,11 @@ import ru.github.kenzhi444.tictactoe.player.PlayerSettings;
 public class Main {
     public static void main(String[] args) {
         LeaderBoard board = new MemoryLeaderBoard();
-        PlayerSettings setupDefault = new PlayerDefaultSettings();
+        PlayerSettings setupDefault = new PlayerConsoleSettings();
         setupDefault.settings();
         Game game = new Game(setupDefault);
         game.play(board);
+        System.out.println("Таблица лидеров:");
+        board.getStatistic();
     }
 }
