@@ -2,17 +2,16 @@ package ru.github.kenzhi444.tictactoe;
 import ru.github.kenzhi444.tictactoe.grid.Grid;
 import ru.github.kenzhi444.tictactoe.leaderboard.LeaderBoard;
 import ru.github.kenzhi444.tictactoe.player.Player;
-import ru.github.kenzhi444.tictactoe.player.PlayerSettings;
-
+import ru.github.kenzhi444.tictactoe.settings.Settings;
 import java.util.*;
 
 public class Game {
-    private Queue<Player> players;
-    private Grid grid;
+    private final Queue<Player> players;
+    private final Grid grid;
 
-    public Game(PlayerSettings setup) {
-        players = new LinkedList<>(setup.getPlayers());
-        grid = new Grid();
+    public Game(Settings setup) {
+        players = new LinkedList<>(setup.getPlay());
+        grid = new Grid(setup.createSizeGrid());
     }
 
     public void play(LeaderBoard board) {
@@ -32,7 +31,7 @@ public class Game {
 
             if (grid.isWinner(player.getSymbol())) {
                 System.out.println("Победа игрока " + player.getName());
-                board.statistic(player);
+                board.createStatistic(player);
                 break;
             }
 

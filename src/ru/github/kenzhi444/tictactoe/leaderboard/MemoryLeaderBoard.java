@@ -13,12 +13,11 @@ public class MemoryLeaderBoard implements LeaderBoard {
     }
 
     @Override
-    public void statistic(Player player) {
+    public void createStatistic(Player player) {
         table.put(player.getName(), table.getOrDefault(player.getName(), 0L) + 1);
     }
 
-    @Override
-    public void getStatistic() {
+    public void printMapStatistic() {
         System.out.println(table);
     }
 }

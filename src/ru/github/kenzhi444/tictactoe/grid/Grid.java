@@ -1,20 +1,18 @@
 package ru.github.kenzhi444.tictactoe.grid;
 
 
+import ru.github.kenzhi444.tictactoe.settings.Settings;
+
 import java.util.Objects;
-import java.util.Scanner;
 
 public class Grid {
+    private final String[][] grid;
     private final int LINES;
     private final int COLUMN;
-    private final String[][] grid;
 
-    public Grid() {
-        Scanner consoleGrid = new Scanner(System.in);
-        System.out.println("Введите количество строк поля");
-        LINES = consoleGrid.nextInt() + 1;
-        System.out.println("Введите количество столбцов поля");
-        COLUMN = consoleGrid.nextInt() + 1;
+    public Grid(int[] strings) {
+        LINES = strings[0];
+        COLUMN = strings[1];
         grid = new String[LINES][COLUMN];
         for (int i = 0; i < LINES; i++) {
             for (int j = 0; j < COLUMN; j++) {
