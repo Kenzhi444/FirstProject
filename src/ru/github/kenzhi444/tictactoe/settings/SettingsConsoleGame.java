@@ -14,12 +14,12 @@ public class SettingsConsoleGame implements Settings {
     private final Queue<Player> play;
     private final Scanner console;
     private Player player;
+    private int GORIZONTAL;
+    private int VERTICAL;
 
     public SettingsConsoleGame() {
         play = new LinkedList<>();
         console = new Scanner(System.in);
-        createQueuePlayers();
-        createSizeGrid();
     }
 
     @Override
@@ -56,17 +56,22 @@ public class SettingsConsoleGame implements Settings {
     }
 
     @Override
-    public int[] createSizeGrid() {
+    public void createSizeGrid() {
         Scanner consoleGrid = new Scanner(System.in);
         System.out.println("Введите количество строк поля");
-        int GORIZONT = consoleGrid.nextInt() + 1;
+        GORIZONTAL = consoleGrid.nextInt() + 1;
         System.out.println("Введите количество столбцов поля");
-        int VERTICAL = consoleGrid.nextInt() + 1;
-        return new int[]{GORIZONT, VERTICAL};
+        VERTICAL = consoleGrid.nextInt() + 1;
     }
 
     public Queue<Player> getPlay() {
         return new LinkedList<>(play);
     }
+
+    @Override
+    public int[] getSizeGrid() {
+        return new int[]{GORIZONTAL, VERTICAL};
+    }
+
 
 }

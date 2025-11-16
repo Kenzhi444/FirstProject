@@ -9,6 +9,9 @@ import java.util.Queue;
 public class SettingsDefaultGame  implements Settings {
 
     private final Queue<Player> playDefault;
+    private int GORIZONTAL;
+    private int VERTICAL;
+
 
     public SettingsDefaultGame() {
         playDefault = new LinkedList<>();
@@ -25,10 +28,9 @@ public class SettingsDefaultGame  implements Settings {
     }
 
     @Override
-    public int[] createSizeGrid() {
-        int GORIZONTAL = 4;
-        int VERTICAL = 4;
-        return new int[]{GORIZONTAL, VERTICAL};
+    public void createSizeGrid() {
+        GORIZONTAL = 4;
+        VERTICAL = 4;
     }
 
 
@@ -36,4 +38,8 @@ public class SettingsDefaultGame  implements Settings {
         return new LinkedList<>(playDefault);
     }
 
+    @Override
+    public int[] getSizeGrid() {
+        return new int[]{GORIZONTAL, VERTICAL};
+    }
 }

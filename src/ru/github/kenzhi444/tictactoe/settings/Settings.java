@@ -8,9 +8,11 @@ public interface Settings {
 
     void createQueuePlayers();
 
-    int[] createSizeGrid();
+    void createSizeGrid();
 
     Queue<Player> getPlay();
+
+    int[] getSizeGrid();
 
 
 }

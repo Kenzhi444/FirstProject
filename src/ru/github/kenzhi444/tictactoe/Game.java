@@ -1,6 +1,6 @@
 package ru.github.kenzhi444.tictactoe;
 import ru.github.kenzhi444.tictactoe.grid.Grid;
-import ru.github.kenzhi444.tictactoe.leaderboard.LeaderBoard;
+import ru.github.kenzhi444.tictactoe.leaderboard.FileLeaderBoard;
 import ru.github.kenzhi444.tictactoe.player.Player;
 import ru.github.kenzhi444.tictactoe.settings.Settings;
 import java.util.*;
@@ -11,10 +11,10 @@ public class Game {
 
     public Game(Settings setup) {
         players = new LinkedList<>(setup.getPlay());
-        grid = new Grid(setup.createSizeGrid());
+        grid = new Grid(setup.getSizeGrid());
     }
 
-    public void play(LeaderBoard board) {
+    public void play(FileLeaderBoard board) {
         int countMove = 0;
         int countMax = grid.countMax();
 
